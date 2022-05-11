@@ -9,7 +9,7 @@ const PayerSchema=require("./Payer")
 const PointsSchema=new Schema(
     {
         pointText:{
-            type:String,
+            type:Number,
             trim:true,
             required:"Current Point Total"
         },
@@ -25,6 +25,9 @@ PointsSchema.virtual("payers").get(function(){
     console.log(this.payers);
     return this.payers.String
 })
+
+//May add this later:need to put function to display timestamp ...
+//...when points are used
 
 //will need to reference payer schema
 const Points = model("Points", PointsSchema)
