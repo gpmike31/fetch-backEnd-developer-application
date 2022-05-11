@@ -1,6 +1,6 @@
 const router= require("express").Router()
-const users=require("./users")
-const thoughts= require("./thoughts")
-router.use("/users",users)
-router.use("/thoughts",thoughts)
+const payer=require("./payer")
+const points= require("./points")
+router.use("/payer",payer)
+router.use("/points",points)
 module.exports=router
