@@ -26,9 +26,10 @@ PointsSchema.virtual("payers").get(function(){
     return this.payers.String
 })
 
+//will need to reference payer schema
 const Points = model("Points", PointsSchema)
 module.exports=Points
-//will need to reference payer schema
+
 
 
 
