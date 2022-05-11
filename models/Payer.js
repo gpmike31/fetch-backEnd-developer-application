@@ -4,7 +4,7 @@ const {Schema,model} = require('mongoose');
 //will need to reference points schema
 const PayerSchema= new Schema({
     //create a new object ID to display payer when schema is ran
-    payer:{
+    payerID:{
         type:Schema.Types.ObjectId,
         default: ()=> new Types.ObjectId()
     },
