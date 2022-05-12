@@ -21,7 +21,7 @@ const PointsSchema=new Schema(
     }
 )
 
-PointsSchema.virtual("payers").get(function(){
+PointsSchema.virtual("payersCount").get(function(){
     console.log(this.payers);
     return this.payers.String
 })

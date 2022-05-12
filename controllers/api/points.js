@@ -2,15 +2,13 @@
 const router = require("express").Router()
 const Points = require("../../models/Points")
 const Payer = require("../../models/Payer")
-const req = require("express/lib/request")
-const res = require("express/lib/response")
 
 //spend points: return integer, reference: payer, reference timestamp for each transaction
 //timestampp should return integer
 
 //get all point values from model schema
 router.get("/", async (req, res)=>{
-    try{
+    try {
         var AllPoints = await Points.find({})
         res.status(200).json(AllPoints)
     } catch (error) {
@@ -18,6 +16,8 @@ router.get("/", async (req, res)=>{
         res.status(500).json(error)
     }
 })
+
+//get a single point value by ID created
 router.get("/:id", async(req,res)=>{
     try {
         var singlePointValue = await Points.findById(
@@ -29,6 +29,8 @@ router.get("/:id", async(req,res)=>{
         res.status(500).json(error)
     }
 })
+
+//create/post a new id for point total to the body object ph payer when resquest is sent
 router.post("/", async({body},res)=>{
     try {
         Points.create(body).then(async(dbpoints)=>{
@@ -43,6 +45,8 @@ router.post("/", async({body},res)=>{
         res.status(500).json(error)
     }
 })
+
+//delete all point values
 router.delete("/all", async(req,res)=>{
     try{
         var emptydoc = await Points.deleteMany({})
@@ -52,6 +56,8 @@ router.delete("/all", async(req,res)=>{
         res.status(500).json(error)
     }
 })
+
+//update point value for a payer by the point value ID
 router.put("/:id", async({params,body},res)=>{
     try {
         var UpdatedPoints=await Points.findByIdAndUpdate(
@@ -65,18 +71,15 @@ router.put("/:id", async({params,body},res)=>{
         res.status(500).json(error)
     }
 })
+
+//delete point value of a payer by the point value ID
 router.delete("/:id",async({params},res)=>{
     try {
         var DeletedPoints = await Points.findByIdAndDelete({_id:params.id})
-        res.status(200),json(DeletedPoints)
+        res.status(200).json(DeletedPoints)
     } catch (error) {
         console.log(error);
         res.status(500).json(error)
     }
 })
-
-//get all point values by single id
-
-//post all point values
-
-//delete point values
+module.exports=router

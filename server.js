@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(routes)
 
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/Notedb',
+  process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/fetchBackEndApplication',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
