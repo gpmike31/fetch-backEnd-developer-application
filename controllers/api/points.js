@@ -82,4 +82,31 @@ router.delete("/:id",async({params},res)=>{
         res.status(500).json(error)
     }
 })
+
+//post updated point values by payers id
+router.post("/:id/payers/:payersid",async({params},res)=>{
+    try {
+        var UpdatedPoints=await Points.updateOne(
+            {_id:params.id},
+            {$addToSet:{points:params.pointsid}})
+        res.status(200).json(UpdatedPoints)
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error)
+    }
+})
+
+//delete points by id associated with payer
+router.delete("/:id/payers/:payersid",async({params},res)=>{
+    try {
+        var UpdatedPoints = await Points.updateOne(
+            {_id:params.id},
+            {$pull:{points:params.pointsid}}
+        )
+        res.status(200).json(UpdatedPoints)
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error)
+    }
+})
 module.exports=router

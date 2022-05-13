@@ -20,6 +20,10 @@ const PointsSchema=new Schema(
         payers:['${PayerSchema}']
     }
 )
+PointsSchema.virtual("payerCount").get(function(){
+    console.log(this.payers);
+    return this.payers.length
+})
 
 PointsSchema.virtual("payersCount").get(function(){
     console.log(this.payers);

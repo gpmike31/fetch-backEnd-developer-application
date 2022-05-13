@@ -6,7 +6,7 @@ const Points = require("../../models/Points")
 //get all payers name from model schema
 router.get("/",async (req,res)=>{
     try {
-        var AllPayers= await User.find({})
+        var AllPayers= await Payer.find({})
         res.status(200).json(AllPayers)
     } catch (error) {
         res.status(500).json(error)
@@ -27,7 +27,7 @@ router.get("/:id", async(req,res)=>{
 router.post("/",async({body},res)=>{
     try {
         console.log(body);
-        User.create(body).then(dbpayer=>res.status(200).json(dbpayer))
+        Payer.create(body).then(dbpayer=>res.status(200).json(dbpayer))
     } catch (error) {
         res.status(500).json(error)
     }
@@ -54,6 +54,33 @@ router.delete("/:id",async(req,res)=>{
         // var deletedThoughts= await Thought.deleteMany()
         res.status(200).json(deleted)
     } catch (error) {
+        res.status(500).json(error)
+    }
+})
+
+//post a point id to associated payer
+router.post("/:id/points/:pointsid",async({params},res)=>{
+    try {
+        var UpdatedUser=await Payer.updateOne(
+            {_id:params.id},
+            {$addToSet:{points:params.pointsid}})
+        res.status(200).json(UpdatedPayer)
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error)
+    }
+})
+
+//delete points id associated with payer
+router.delete("/:id/points/:pointsid",async({params},res)=>{
+    try {
+        var UpdatedPayer = await Payer.updateOne(
+            {_id:params.id},
+            {$pull:{points:params.pointsid}}
+        )
+        res.status(200).json(UpdatedPayer)
+    } catch (error) {
+        console.log(error);
         res.status(500).json(error)
     }
 })
