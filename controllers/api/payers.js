@@ -59,7 +59,7 @@ router.delete("/:id",async(req,res)=>{
 })
 
 //post a point id to associated payer
-router.post("/:id/points/:pointsid",async({params},res)=>{
+router.post("/:id/payers/:payersid",async({params},res)=>{
     try {
         var UpdatedPayer=await Payer.updateOne(
             {_id:params.id},
@@ -72,7 +72,7 @@ router.post("/:id/points/:pointsid",async({params},res)=>{
 })
 
 //delete points id associated with payer
-router.delete("/:id/points/:pointsid",async({params},res)=>{
+router.delete("/:id/payers/:payersid",async({params},res)=>{
     try {
         var UpdatedPayer = await Payer.updateOne(
             {_id:params.id},

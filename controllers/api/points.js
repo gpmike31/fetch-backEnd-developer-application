@@ -88,7 +88,7 @@ router.post("/:id/points/:pointsid",async({params},res)=>{
     try {
         var UpdatedPoints=await Points.updateOne(
             {_id:params.id},
-            {$addToSet:{points:params.pointsid}})
+            {$addToSet:{points:params.payersid}})
         res.status(200).json(UpdatedPoints)
     } catch (error) {
         console.log(error);
@@ -101,7 +101,7 @@ router.delete("/:id/points/:pointsid",async({params},res)=>{
     try {
         var UpdatedPoints = await Points.updateOne(
             {_id:params.id},
-            {$pull:{points:params.pointsid}}
+            {$pull:{points:params.payersid}}
         )
         res.status(200).json(UpdatedPoints)
     } catch (error) {

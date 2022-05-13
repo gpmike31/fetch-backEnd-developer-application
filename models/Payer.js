@@ -17,7 +17,8 @@ const PayerSchema= new Schema({
     points:[
         {
             type:Schema.Types.ObjectId,
-            ref:"points"
+            ref:"points",
+            type:String
         }
     ]
 })

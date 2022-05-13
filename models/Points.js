@@ -1,5 +1,7 @@
 //insert points schema, will require mongoose
-const {Schema, model}= require("mongoose")
+const { text } = require("express");
+const {Schema, model}= require("mongoose");
+const { validate } = require("./Payer");
 const PayerSchema=require("./Payer")
 
 //points schema will show the amount of points as a string whether adding or subtracting
@@ -9,9 +11,15 @@ const PayerSchema=require("./Payer")
 const PointsSchema=new Schema(
     {
         pointText:{
-            type:Number,
+            type:String,
             trim:true,
-            required:"Current Point Total"
+            unique: true,
+            required:"Current Point Total",
+            validate: {
+                type:String,
+                validator: Number.isInteger,
+                message: '{VALUE} is not an integer value'
+            }
         },
         createdAt:{
             type:Date,
@@ -20,14 +28,10 @@ const PointsSchema=new Schema(
         payers:['${PayerSchema}']
     }
 )
-PointsSchema.virtual("payerCount").get(function(){
-    console.log(this.payers);
-    return this.payers.length
-})
 
 PointsSchema.virtual("payersCount").get(function(){
     console.log(this.payers);
-    return this.payers.String
+    return this.payers.length
 })
 
 //May add this later:need to put function to display timestamp ...
