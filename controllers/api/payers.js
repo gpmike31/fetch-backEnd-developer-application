@@ -61,7 +61,7 @@ router.delete("/:id",async(req,res)=>{
 //post a point id to associated payer
 router.post("/:id/points/:pointsid",async({params},res)=>{
     try {
-        var UpdatedUser=await Payer.updateOne(
+        var UpdatedPayer=await Payer.updateOne(
             {_id:params.id},
             {$addToSet:{points:params.pointsid}})
         res.status(200).json(UpdatedPayer)
