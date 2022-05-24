@@ -61,7 +61,7 @@ router.get('/', (req, res) => {
     Points.create(req.body)
       .then((points) => {
         // if there's point tags, we need to create pairings to bulk create in the Payer model
-        if (req.body.payerIds.length) {
+        if (req.body.payers_id.length) {
           const points_idArr = req.body.points_id.map((points_id) => {
             return {
               points_id: points_id,
@@ -95,7 +95,7 @@ router.get('/', (req, res) => {
         // get list of current points id's
         const points_id = points_id.map(({ points_id }) => points_id);
         // create filtered list of new points_id
-        const newPointsIDs = req.body.payersIds
+        const newPointsIDs = req.body.payers_id
           .filter((points_id) => !points_id.includes(payers_id))
           .map((points_id) => {
             return {
@@ -104,7 +104,7 @@ router.get('/', (req, res) => {
           });
         // figure out which ones to remove
         const points_idToRemove = points_id
-          .filter(({ points_id }) => !req.body.payerIds.includes(points_id))
+          .filter(({ points_id }) => !req.body.payers_id.includes(points_id))
           .map(({ id }) => id);
   
         // run both actions
@@ -129,7 +129,7 @@ router.get('/', (req, res) => {
     })
       .then(pointsData => {
         if (!pointsData) {
-          res.status(404).json({ message: 'No Point value found with that ID.' });
+          res.status(404).json({ message: 'No Point value found with that payer ID.' });
           return;
         }
         res.json(pointsData);

@@ -4,7 +4,7 @@ const Points = require('./Points');
 
 //Points belongsTo Payer
 Points.belongsTo(Payer, {
-    foreignKey: 'payer_id',
+    foreignKey: 'payers_id',
     onDelete: 'SET NULL'
 })
 
