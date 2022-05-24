@@ -13,26 +13,26 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  // find one payers by its `id` value
+  // find one payer by its `id` value
   // be sure to include its associated points
   Payer.findOne({
     where: {
       id: req.params.id
     },
-    include: [Product]
+    include: [Points]
   })
   .then((results) => { res.json(results)})
 });
 
 router.post('/', (req, res) => {
-  // create a new category
-  Category.create(req.body)
+  // create a new Payer
+  Payer.create(req.body)
   .then((results) => { res.json(results)})
 });
 
 router.put('/:id', (req, res) => {
-  // update a category by its `id` value
-  Category.update(req.body, {
+  // update a Payer by its `id` value
+  Payer.update(req.body, {
     where: {
       id: req.params.id
     }
@@ -41,8 +41,8 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  // delete a category by its `id` value
-  Category.destroy({
+  // delete a Payer by its `id` value
+  Payer.destroy({
     where: {
       id: req.params.id
     }
