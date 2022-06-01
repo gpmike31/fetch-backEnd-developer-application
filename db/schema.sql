@@ -1,0 +1,5 @@
+-- DROP DATABASE
+DROP DATABASE IF EXISTS payerPointsdata;
+
+-- CREATE DATABASE
+CREATE DATABASE payerPointsdata;
