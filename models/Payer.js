@@ -1,4 +1,4 @@
-//insert payer schema, will require mongoose
+//insert payer schema
 const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../contollers/connection');
