@@ -1,10 +1,7 @@
-//insert points api routes
-const router = require("express").Router()
-const Points = require("../../models/Points")
-const Payer = require("../../models/Payer")
+//insert points api routes global variables
+const router = require('express').Router();
+const { Payer, Points } = require('../../models');
 
-//spend points: return integer, reference: payer, reference timestamp for each transaction
-//timestampp should return integer
 
 //get all point values
 router.get('/', (req, res) => {
@@ -20,17 +17,17 @@ router.get('/', (req, res) => {
         ]
       }
     )
-      .then(productData => res.json(pointsData))
+      .then(pointsData => res.json(pointsData))
       .catch(err => {
         console.log(err);
         res.status(500).json(err);
       });
   });
   
-  // get one product
+  // get one point value total
   router.get('/:id', (req, res) => {
-    // find a single product by its `id`
-    // be sure to include its associated Category and Tag data
+    // find a single point value by its `id`
+    // be sure to include its associated Payer data
     Points.findOne({
       where: {
         id: req.params.id
@@ -41,7 +38,7 @@ router.get('/', (req, res) => {
       },
       ]
     })
-      .then(productData => res.json(pointsData))
+      .then(pointsData => res.json(pointsData))
       .catch(err => {
         console.log(err);
         res.status(500).json(err);
@@ -65,11 +62,12 @@ router.get('/', (req, res) => {
           const points_idArr = req.body.points_id.map((points_id) => {
             return {
               points_id: points_id,
+              payers_id,
             };
           });
           return Points.bulkCreate(points_idArr);
         }
-        // if no points tags, just respond
+        // if no points id can be fount, just respond
         res.status(200).json(points);
       })
       .then((points_id) => res.status(200).json(points_id))
@@ -92,19 +90,20 @@ router.get('/', (req, res) => {
         return Points.findAll({ where: { points_id: req.params.id } });
       })
       .then((points_id) => {
-        // get list of current points id's
+        // get list of current points_ids
         const points_id = points_id.map(({ points_id }) => points_id);
         // create filtered list of new points_id
         const newPointsIDs = req.body.payers_id
-          .filter((points_id) => !points_id.includes(payers_id))
-          .map((points_id) => {
+          .filter((payers_id) => !pointsIDs.includes(payers_id))
+          .map((payers_id) => {
             return {
               points_id: req.params.id,
+              payers_id,
             };
           });
         // figure out which ones to remove
         const points_idToRemove = points_id
-          .filter(({ points_id }) => !req.body.payers_id.includes(points_id))
+          .filter(({ payers_id }) => !req.body.payers_id.includes(payers_id))
           .map(({ id }) => id);
   
         // run both actions
