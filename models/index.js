@@ -8,6 +8,18 @@ Points.belongsTo(Payer, {
     onDelete: 'SET NULL'
 })
 
+Payer.hasMany(Points, {
+    foreignKey: 'payers_id',
+    onUpdate: 'SET NULL'
+})
+
+Points.belongsToMany(Payer, {
+    through: Payer,
+    foreignKey: 'payers_id',
+    onUpdate: 'SET NULL'
+
+})
+
 module.exports = {
     Payer,
     Points,

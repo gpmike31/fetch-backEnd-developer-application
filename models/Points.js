@@ -37,7 +37,7 @@ Points.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'Points',
+        modelName: 'points',
     }
 );
 
