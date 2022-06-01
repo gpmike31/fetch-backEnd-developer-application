@@ -1,32 +1,32 @@
 //insert payer schema
 const { Model, DataTypes } = require('sequelize');
 
-const sequelize = require('../contollers/connection');
+const sequelize = require('../config/connection.js');
 
 class Payer extends Model {}
 
 //will need to reference points schema
 Payer.init (
-    {
-        // define columns
-        id: {
-          type: DataTypes.INTEGER,
-          allowNull: false,
-          primaryKey: true,
-          autoIncrement: true
-        },
-        payer_name: {
-          type: DataTypes.STRING,
-          allowNull: false
-        }
-      },
-      {
-        sequelize,
-        timestamps: false,
-        freezeTableName: true,
-        underscored: true,
-        modelName: 'Payer',
-      }
-    );
+  {
+    // define columns
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    payer_name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'Payer',
+  }
+);
     
-    module.exports = Payer;
+module.exports = Payer;

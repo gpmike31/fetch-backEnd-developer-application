@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
         include: [
           {
             model: Payer,
-            attributes: ['payers_id']
+            attributes: ['payer_name']
           }
         ]
       }
@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
       },
       include: [{
         model: Payer,
-        attributes: ['payers_id']
+        attributes: ['payer_name']
       },
       ]
     })

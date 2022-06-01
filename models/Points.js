@@ -1,38 +1,36 @@
-//insert points schema, will require mongoose
-//const { text } = require("express");
-//const {Schema, model}= require("mongoose");
-//const { validate } = require("./Payer");
-//const PayerSchema=require("./Payer")
+// import important parts of sequelize library
+const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const { Model, Datatypes, Sequelize } = require('sequelize');
+// import our database connection from config.js
+const sequelize = require('../config/connection');
 
-const sequelize = require('../contollers/connection');
-
+// Initialize Points model (table) by extending off Sequelize's Model class
 class Points extends Model {}
 
-//points schema will show the amount of points as a string whether adding or subtracting
-//and will show the current date and time for each transaction.
-//This schema below will reference the payers module inside of an array and use a virtual
-//to return the payers in a string
+//set up fields and rules for Points model
 Points.init(
     {
+        //define colums
         id: {
-            type:Datatypes.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true
+            defaultValue: 10,
+            validate:{
+                isNumeric: true
+            }
         },
         createdAt:{
             type:Date,
             default:Date.now
         },
-        payers_id: {
-            type: Datatypes.INTEGER,
+        payers_id:{
+            type: DataTypes.INTEGER,
             references: {
                 model: 'Payer',
                 key: 'id'
             }
-        }
+        },
     },
     {
         sequelize,
@@ -43,12 +41,7 @@ Points.init(
     }
 );
 
-//May add this later:need to put function to display timestamp ...
-//...when points are used
-
-//will need to reference payer schema
-
-module.exports=Points;
+module.exports = Points;
 
 
 
