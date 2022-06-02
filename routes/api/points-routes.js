@@ -91,7 +91,7 @@ router.get('/', (req, res) => {
       })
       .then((points_id) => {
         // get list of current points_ids
-        const points_id = points_id.map(({ points_id }) => points_id);
+        const pointsIDs = points_id.map(({ points_id }) => points_id);
         // create filtered list of new points_id
         const newPointsIDs = req.body.payers_id
           .filter((payers_id) => !pointsIDs.includes(payers_id))
