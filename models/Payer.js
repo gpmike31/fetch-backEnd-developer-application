@@ -26,6 +26,7 @@ Payer.init (
     freezeTableName: true,
     underscored: true,
     modelName: 'payer',
+    
   }
 );
     

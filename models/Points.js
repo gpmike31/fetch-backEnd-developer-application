@@ -15,22 +15,15 @@ Points.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
-            defaultValue: 10,
-            validate:{
-                isNumeric: true
-            }
-        },
-        createdAt:{
-            type:Date,
-            default:Date.now
+            autoIncrement: true
         },
         payers_id:{
             type: DataTypes.INTEGER,
             references: {
-                model: 'Payer',
+                model: 'payer',
                 key: 'id'
             }
-        },
+        }
     },
     {
         sequelize,

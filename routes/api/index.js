@@ -1,6 +1,6 @@
 const router= require('express').Router();
-const payers=require('./payers-routes');
-const points= require('./points-routes');
+const payersRoutes=require('./payers-routes');
+const pointsRoutes= require('./points-routes');
 
 router.use('/payers', payersRoutes);
 router.use('/points', pointsRoutes);
