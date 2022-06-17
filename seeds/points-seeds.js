@@ -2,24 +2,19 @@ const { Points } = require('../models');
 
 const pointsData = [
   {
-    pointValue: 5000,
-    payers_id: 1,
+    point_value: 5000,
   },
   {
-    pointValue: 6000,
-    payers_id: 2,
+    point_value: 6000,
   },
   {
-    pointValue: 7000,
-    payers_id: 3,
+    point_value: 7000,
   },
   {
-    pointValue: 8000,
-    payers_id: 4,
+    point_value: 8000,
   },
   {
-    pointValue: 9000,
-    payers_id: 5,
+    point_value: 9000,
   },
 ];
 

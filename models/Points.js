@@ -11,18 +11,8 @@ class Points extends Model {}
 Points.init(
     {
         //define colums
-        id: {
+        pointValue:{
             type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        payers_id:{
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'payer',
-                key: 'id'
-            }
         }
     },
     {
